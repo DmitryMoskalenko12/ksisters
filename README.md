@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# K-Sisters
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Опис проєкту
 
-## Available Scripts
+**K-Sisters** — frontend-проєкт, створений на React. У проєкті реалізований сучасний адаптивний інтерфейс із використанням анімацій, паралакс-ефектів та стилізації через SCSS.
 
-In the project directory, you can run:
+Основна увага приділена візуальній частині, плавним анімаціям та адаптації інтерфейсу під різні розміри екранів.
 
-### `npm start`
+## Технології
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+У проєкті використані:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React 19** — основна бібліотека для створення інтерфейсу.
+- **React DOM** — рендеринг React-компонентів у DOM.
+- **JavaScript (ES6+)** — основна мова розробки.
+- **SCSS / Sass** — стилізація компонентів та організація CSS.
+- **Framer Motion** — анімації, scroll-анімації та паралакс-ефекти.
+- **Create React App / react-scripts** — запуск проєкту, development-сервер та production-збірка.
+- **Web Vitals** — відстеження основних показників продуктивності.
+- **Testing Library** — інструменти для тестування React-компонентів.
 
-### `npm test`
+## Основні можливості
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Адаптивність
 
-### `npm run build`
+Інтерфейс адаптований для:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Desktop;
+- Mobile.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для визначення мобільного режиму використовується `window.matchMedia()`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Для різних розмірів екрана можуть використовуватися окремі параметри позиціонування та розмірів декоративних елементів.
 
-### `npm run eject`
+### Паралакс-ефект
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Для створення паралакс-ефекту використовується **Framer Motion**.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Зокрема, використовується `useScroll` для отримання прогресу прокручування сторінки:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```js
+const { scrollYProgress } = useScroll({
+  target: containerRef,
+  offset: ["start end", "end start"],
+});
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Отриманий `scrollYProgress` передається до компонентів, які реагують на прокручування сторінки.
 
-## Learn More
+### Анімовані елементи
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+У проєкті використовуються окремі компоненти для декоративних елементів, наприклад:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `ParallaxContent`;
+- `ParallaxBall`.
 
-### Code Splitting
+Це дозволяє розділити логіку анімацій на окремі компоненти та спростити підтримку коду.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Паралакс-кулі
 
-### Analyzing the Bundle Size
+Для декоративних куль використовується масив конфігурацій, у якому задаються:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `size` — розмір кулі;
+- `x` — горизонтальна позиція;
+- `y` — вертикальна позиція;
+- `depth` — глибина паралакс-ефекту.
 
-### Making a Progressive Web App
+Для мобільних пристроїв передбачений окремий набір параметрів.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Запуск у режимі розробки
 
-### Advanced Configuration
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Після запуску проєкт буде доступний локально за адресою:
 
-### Deployment
+```text
+http://localhost:3000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Production-збірка
 
-### `npm run build` fails to minify
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Готова production-версія буде створена у папці:
+
+```text
+build/
+```
+## Запуск проєкту
+
+1. Клонувати репозиторій.
+2. Встановити залежності:
+
+```bash
+npm install
+```
+
+3. Запустити development-сервер:
+
+```bash
+npm start
+```
+
+4. Відкрити `http://localhost:3000`.
+
+---
+
+## Версії
+
+- React: `19.2.8`
+- React DOM: `19.2.8`
+- Framer Motion: `13.1.0`
+- Sass: `1.102.0`
+- React Scripts: `5.0.1`
+
+## Автор
+
+Frontend-проєкт **K-Sisters**.
