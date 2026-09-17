@@ -6,15 +6,17 @@ import {
 } from "framer-motion";
 
 import { useRef } from "react";
-
 import "./BeforeAfter.scss";
 
 const clamp = (value, min, max) => {
   return Math.min(Math.max(value, min), max);
 };
 
+
 export default function BeforeAfter() {
+
   const containerRef = useRef(null);
+
   const slider = useMotionValue(0.5);
   const smoothSlider = useSpring(slider, {
     stiffness: 300,
@@ -27,7 +29,6 @@ export default function BeforeAfter() {
     [0, 1],
     ["0%", "100%"]
   );
-
   const beforeClip = useTransform(
     smoothSlider,
     [0, 1],
@@ -37,7 +38,9 @@ export default function BeforeAfter() {
     ]
   );
 
+
   const updateSlider = (event) => {
+
     const container = containerRef.current;
 
     if (!container) {
@@ -46,24 +49,19 @@ export default function BeforeAfter() {
 
     const rect =
       container.getBoundingClientRect();
-
     const x =
       event.clientX - rect.left;
-
     const percentage =
       x / rect.width;
-
     const value = clamp(
       percentage,
       0,
       1
     );
-
     slider.set(value);
   };
 
   const handlePointerDown = (event) => {
- 
     event.currentTarget.setPointerCapture(
       event.pointerId
     );
@@ -77,6 +75,7 @@ export default function BeforeAfter() {
         event.pointerId
       )
     ) {
+
       updateSlider(event);
     }
   };
@@ -87,21 +86,33 @@ export default function BeforeAfter() {
         event.pointerId
       )
     ) {
+
       event.currentTarget.releasePointerCapture(
         event.pointerId
       );
     }
   };
 
+
   return (
     <section className="before-after-section">
+
       <div className="before-after-container">
-         <div className="list-top">
-           <img src="/listAfterBeforeTop.webp" alt="Decore" />
-         </div>
-         <div className="list-bottom">
-           <img src="/listAfterBeforeBottom.webp" alt="Decore" />
-         </div>
+
+        <div className="list-top">
+          <img
+            src="/listAfterBeforeTop.webp"
+            alt="Decore"
+          />
+        </div>
+
+        <div className="list-bottom">
+          <img
+            src="/listAfterBeforeBottom.webp"
+            alt="Decore"
+          />
+        </div>
+
         <motion.h2
           className="before-after-title"
           initial={{
@@ -121,7 +132,11 @@ export default function BeforeAfter() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          Помічаєш перші ознаки <br className="br"/>вікових змін?
+          Помічаєш перші ознаки{" "}
+
+          <br className="br"/>
+
+          вікових змін?
         </motion.h2>
 
         <div className="before-after-layout">
@@ -137,14 +152,17 @@ export default function BeforeAfter() {
                 opacity: 0,
                 x: -80,
               }}
+
               whileInView={{
                 opacity: 1,
                 x: 0,
               }}
+
               viewport={{
                 once: true,
                 amount: 0.3,
               }}
+
               transition={{
                 duration: 0.8,
                 delay: 0.15,
@@ -152,12 +170,13 @@ export default function BeforeAfter() {
               }}
             >
               <p>
-              Зниження пружності, поява тонких ліній, сухість і відчуття стягнутості можуть робити обличчя більш втомленим і тьмяним на вигляд.
+                Зниження пружності, поява тонких ліній, сухість і відчуття стягнутості можуть робити обличчя більш втомленим і тьмяним на вигляд.
               </p>
 
               <span className="info-icon">
-               😔
+                <img src="/smile.png" alt="Smile" />
               </span>
+
             </motion.div>
 
             <motion.div
@@ -169,10 +188,12 @@ export default function BeforeAfter() {
                 opacity: 0,
                 x: -80,
               }}
+
               whileInView={{
                 opacity: 1,
                 x: 0,
               }}
+
               viewport={{
                 once: true,
                 amount: 0.3,
@@ -188,8 +209,9 @@ export default function BeforeAfter() {
               </p>
 
               <div className="info-icon">
-                ✨
+                <img src="/star.png" alt="Star" />
               </div>
+
             </motion.div>
 
           </div>
@@ -201,14 +223,17 @@ export default function BeforeAfter() {
               opacity: 0,
               scale: 0.96,
             }}
+
             whileInView={{
               opacity: 1,
               scale: 1,
             }}
+
             viewport={{
               once: true,
               amount: 0.25,
             }}
+
             transition={{
               duration: 0.9,
               ease: [0.22, 1, 0.36, 1],
@@ -225,11 +250,15 @@ export default function BeforeAfter() {
                 after-image
               "
             >
+
               <img
                 src="/after.webp"
                 alt="Шкіра після"
                 draggable="false"
               />
+              <div className="logoAfter">
+                <img src="/afterLogo.png" alt="" />
+              </div>
             </div>
 
             <motion.div
@@ -241,11 +270,13 @@ export default function BeforeAfter() {
                 clipPath: beforeClip,
               }}
             >
+
               <img
                 src="/before.webp"
                 alt="Шкіра до"
                 draggable="false"
               />
+
             </motion.div>
 
             <motion.div

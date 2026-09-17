@@ -1,7 +1,11 @@
 import { motion, useSpring, useTransform } from "framer-motion";
 import "./ParallaxBall.scss";
 
-const ParallaxBall = ({ ball, scrollYProgress }) => {
+const ParallaxBall = ({
+  ball,
+  scrollYProgress,
+  disableParallax = false,
+}) => {
   const movement = 180 * ball.depth;
 
   const y = useTransform(
@@ -28,7 +32,7 @@ const ParallaxBall = ({ ball, scrollYProgress }) => {
       style={{
         left: `${ball.x}%`,
         top: `${ball.y}%`,
-        y: smoothY,
+        y: disableParallax ? 0 : smoothY,
       }}
     >
       <motion.div
@@ -36,9 +40,15 @@ const ParallaxBall = ({ ball, scrollYProgress }) => {
         style={{
           "--ball-size": `${ball.size}px`,
           "--ball-blur": `${ball.blur ?? 0}px`,
-          scale,
+          scale: disableParallax ? 1 : scale,
         }}
-      />
+      >
+        {ball.isMain && (
+          <span className="parallax-ball-text">
+            <img src="/logo.png" alt="Logo" />
+          </span>
+        )}
+      </motion.div>
     </motion.div>
   );
 };

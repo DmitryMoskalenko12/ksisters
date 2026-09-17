@@ -1,14 +1,28 @@
 .parallax-balls {
   position: absolute;
   inset: 0;
-  z-index: 2;
   pointer-events: none;
+  z-index: 2;
 }
 
 .parallax-ball-wrapper {
   position: absolute;
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
+}
+
+.parallax-ball-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+  img {
+    width: 40px;
+    height: 9px;
+  }
 }
 
 .parallax-ball {
@@ -18,7 +32,7 @@
   border-radius: 50%;
   overflow: hidden;
   filter: blur(var(--ball-blur));
-  background: #6f7d64;
+  background: linear-gradient(135.00deg, rgba(111, 125, 100, 1) 0%,rgba(75, 90, 63, 1) 100%);;
   box-shadow:
     inset -10px -12px 20px rgba(25, 35, 25, 0.25),
     inset 7px 7px 12px rgba(255, 255, 255, 0.2),
@@ -42,7 +56,6 @@
   );
 
   filter: blur(6px);
-
   pointer-events: none;
 }
 
@@ -50,6 +63,13 @@
   .parallax-balls {
     width: 1225px;
     margin: 0 auto;
+  }
+
+  .parallax-ball-text {
+      img {
+        width: 108px;
+        height: 21px;
+      }
   }
 }
 

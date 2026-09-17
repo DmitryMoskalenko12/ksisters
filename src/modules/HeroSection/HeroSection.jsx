@@ -26,6 +26,8 @@ const BALLS = [
     x: 15,
     y: 73,
     depth: 0.7,
+    blur: 0.5,
+    isMain: true,
   },
   {
     id: 5,
@@ -65,6 +67,8 @@ const BALLSMOBILE = [
     x: 10,
     y: 75,
     depth: 0.7,
+    blur: 0.5,
+    isMain: true,
   },
   {
     id: 5,
@@ -126,14 +130,14 @@ const HeroSection = () => {
         <div className="figure2__wrapper">
           <img src="/figure2.webp" alt="Figure" />
         </div>
-
-        <div className="parallax-balls">
+               <div className="parallax-balls">
           {isMobile
             ? BALLSMOBILE.map((ball) => (
                 <ParallaxBall
                   key={ball.id}
                   ball={ball}
                   scrollYProgress={scrollYProgress}
+                  disableParallax={isMobile}
                 />
               ))
             : BALLS.map((ball) => (
