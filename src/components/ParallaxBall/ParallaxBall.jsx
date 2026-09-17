@@ -6,7 +6,7 @@ const ParallaxBall = ({
   scrollYProgress,
   disableParallax = false,
 }) => {
-  const movement = 180 * ball.depth;
+  const movement = 100 * ball.depth;
 
   const y = useTransform(
     scrollYProgress,
